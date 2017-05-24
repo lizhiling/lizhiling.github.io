@@ -53,6 +53,10 @@ function renderNewGround(groundContainer, groundY) {
     groundContainer.addChild(groundContainerA);
 
     document.getElementsByTagName('canvas')[0].onclick = function () {
+        if (getDecreaseVTag()){
+            jumpV = startJumpV;
+            setDecreaseVTag(false);
+        }
         jumping = true;
     };
 }

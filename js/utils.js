@@ -73,7 +73,7 @@ function allowRestart() {
         start();
     };
 
-    document.getElementsByTagName('canvas')[0].onclick = function () {
-        start();
-    };
+    // document.getElementsByTagName('canvas')[0].onclick = function () {
+    //     start();
+    // };
 }
