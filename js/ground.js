@@ -151,3 +151,5 @@ function rollMd() {
 W.press = function () {
     jumping = true;
 };
+
+document.getElementsByTagName('canvas')[0].onclick = W.press;
