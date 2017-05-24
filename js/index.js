@@ -73,10 +73,10 @@ function mdAnimation() {
 }
 
 function updateScore(){
-    velocity = startVelocity + level;
+    velocity = startVelocity + level * 3;
     score += velocity/60;
     scoreMessage.text = 'Score:' + parseInt(score);
-    level = parseInt(score / 300);
+    level = parseInt(score / 200);
 }
 
 

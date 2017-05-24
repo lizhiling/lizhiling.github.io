@@ -4,6 +4,8 @@
 var groundContainerA, groundContainerB, md;
 
 function renderNewGround(groundContainer, groundY) {
+    jumpVDynamic = jumpV;
+
     md = new Sprite(resources["../img/atlas.png"].texture);
     md.height = 0.15 * renderer.height;
     md.width = md.height;
@@ -22,12 +24,7 @@ function renderNewGround(groundContainer, groundY) {
     groundLine.lineStyle(4, 0xFFFFFF, 1);
     groundLine.moveTo(0, groundY);
     groundLine.lineTo(renderer.width, groundY);
-    groundContainerA.addChild(groundLine);
-    var groundLineCopy = new Graphics();
-    groundLine.lineStyle(4, 0xFFFFFF, 1);
-    groundLine.moveTo(renderer.width, groundY);
-    groundLine.lineTo(renderer.width*2, groundY);
-    groundContainerB.addChild(groundLine);
+    groundContainer.addChild(groundLine);
 
     var decorateLine1 = decorateLine(0, 1.15 * groundY, renderer.width*0.2);
     var decorateLine1copy = decorateLine(0 + renderer.width, 1.15 * groundY, renderer.width*0.2);
@@ -130,8 +127,8 @@ function moveStones() {
 }
 
 
-var jumpVDynamic = jumpV;
-var g = -10 / 60 * 3;
+var jumpVDynamic;
+const g = -10 / 60 * 3;
 function jumpMd() {
     if (jumping) {
         jumpVDynamic += g;
@@ -147,16 +144,19 @@ function jumpMd() {
 
 
 var rotate = 0;
-var rotateG = 3 / 60;
+const rotateG = 3 / 60;
 function rollMd() {
-    rotate += rotateG;
+    rotate += rotateG*(level+1);
     md.rotation = rotate;
 }
 
 W.press = function () {
-    if (getDecreaseVTag()){
-        jumpV = startJumpV;
-        setDecreaseVTag(false);
+    if(md.y + md.height / 2 >= groundY){
+        if (getDecreaseVTag()){
+            jumpV = startJumpV;
+            setDecreaseVTag(false);
+        }
+        jumpVDynamic = jumpV;
+        jumping = true;
     }
-    jumping = true;
 };

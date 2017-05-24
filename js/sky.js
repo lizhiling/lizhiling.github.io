@@ -23,6 +23,7 @@ function produceStar(skyContainer) {
 
 var starBuffStartTime = undefined;
 var decreaseVTag = false;
+const jumpVAdd = 5;
 function moveStars() {
     for (var i = 0; i < starArray.length; i++) {
         var star = starArray[i];
@@ -35,8 +36,8 @@ function moveStars() {
 
                 renderer.render(skyContainer);
                 if (starBuffStartTime===undefined){
-                    jumpV += velocity;
                     starBuffStartTime = new Date().getTime();
+                    jumpV += jumpVAdd;
                 }
             }else{
                 star.x -= velocity;
