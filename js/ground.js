@@ -91,10 +91,7 @@ function randomProduceStone(groundContainer) {
     var maxStoneNo = 4;
     var r = Math.random();
     if (r < 1 / (60 * frequency) && stoneArray.length < maxStoneNo) {
-        if(stoneArray[stoneArray.length - 1] == undefined || stoneArray[stoneArray.length - 1].getGlobalPosition().x < renderer.width*0.9){
-            if(stoneArray[stoneArray.length - 1] != undefined){
-                console.log(stoneArray[stoneArray.length - 1].getGlobalPosition().x);
-            }
+        if(stoneArray[stoneArray.length - 1] == undefined || stoneArray[stoneArray.length - 1].getGlobalPosition().x < renderer.width*0.8){
             produceStone(groundContainer);
         }
     }
