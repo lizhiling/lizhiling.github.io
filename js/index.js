@@ -14,9 +14,9 @@ function loadProgressHandler(loader, resource) {
 
 
 function setup() {
-    renderer = autoDetectRenderer(786, 512);
+    renderer = autoDetectRenderer(screen.width * 0.7, screen.width * 0.7 * 0.6);
     renderer.autoResize = true;
-    renderer.resize(786, 512);
+    renderer.resize(screen.width * 0.7, screen.width * 0.7 * 0.6);
     document.body.appendChild(renderer.view);
     start();
 }

@@ -72,4 +72,8 @@ function allowRestart() {
     SPACE.press = function () {
         start();
     };
+
+    document.getElementsByTagName('canvas')[0].onclick = function () {
+        start();
+    };
 }

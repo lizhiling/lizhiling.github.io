@@ -51,6 +51,10 @@ function renderNewGround(groundContainer, groundY) {
 
     groundContainer.addChild(groundContainerB);
     groundContainer.addChild(groundContainerA);
+
+    document.getElementsByTagName('canvas')[0].onclick = function () {
+        jumping = true;
+    };
 }
 
 function decorateLine(x, y, width) {
@@ -151,5 +155,3 @@ function rollMd() {
 W.press = function () {
     jumping = true;
 };
-
-document.getElementsByTagName('canvas')[0].onclick = W.press;
