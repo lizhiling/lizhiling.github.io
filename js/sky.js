@@ -22,10 +22,10 @@ function produceStar(skyContainer) {
 }
 
 var starBuffStartTime = undefined;
+var decreaseVTag = false;
 function moveStars() {
     for (var i = 0; i < starArray.length; i++) {
         var star = starArray[i];
-
             if (hit(getMd(), star, 1)) {
                 console.log('got star!');
                 star.destroy();
@@ -35,7 +35,7 @@ function moveStars() {
 
                 renderer.render(skyContainer);
                 if (starBuffStartTime===undefined){
-                    startJumpV += velocity;
+                    jumpV += velocity;
                     starBuffStartTime = new Date().getTime();
                 }
             }else{
@@ -53,13 +53,17 @@ function moveStars() {
 
     if(starBuffStartTime!==undefined && starBuffStartTime < new Date().getTime()-10*1000){
         starBuffStartTime = undefined;
-        startJumpV -= velocity;
+        decreaseVTag = true;
     }
 
 }
 
-function getStarBuffStartTime(){
-    return starBuffStartTime;
+function getDecreaseVTag(){
+    return decreaseVTag;
+}
+
+function setDecreaseVTag(t) {
+    decreaseVTag = t;
 }
 
 function setStarBuffStartTime(time){

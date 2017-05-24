@@ -129,15 +129,15 @@ function moveStones() {
 }
 
 
-var jumpV = startJumpV;
+var jumpVDynamic = jumpV;
 var g = -10 / 60 * 3;
 function jumpMd() {
     if (jumping) {
-        jumpV += g;
-        md.y = md.y - jumpV;
+        jumpVDynamic += g;
+        md.y = md.y - jumpVDynamic;
 
-        if (jumpV <= -startJumpV || md.y + md.height / 2 >= groundY) {
-            jumpV = startJumpV;
+        if (jumpVDynamic <= -jumpV || md.y + md.height / 2 >= groundY) {
+            jumpVDynamic = jumpV;
             md.y = groundY - md.height / 2;
             jumping = false;
         }
@@ -153,5 +153,9 @@ function rollMd() {
 }
 
 W.press = function () {
+    if (getDecreaseVTag()){
+        jumpV = startJumpV;
+        setDecreaseVTag(false);
+    }
     jumping = true;
 };

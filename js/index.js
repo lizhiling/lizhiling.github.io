@@ -48,12 +48,14 @@ function initGround() {
     velocity = startVelocity;
     SPACE.press = null;
     jumping = false;
+    jumpV = startJumpV;
     stoneArray = new Array();
     renderNewGround(groundContainer, groundY);
 }
 
 function initSky() {
     starArray = new Array();
+    level = 0;
     setStarBuffStartTime(undefined);
 }
 
@@ -72,15 +74,14 @@ function mdAnimation() {
 
 function updateScore(){
     velocity = startVelocity + level;
-    score += velocity;
-    scoreMessage.text = 'Score:' + score;
-    level = parseInt(score / 5400);
+    score += velocity/60;
+    scoreMessage.text = 'Score:' + parseInt(score);
+    level = parseInt(score / 300);
 }
 
 
 function initText() {
     score = 0;
-    level = 0;
     restartMessage = new Text("Press SPACE to restart!",
         {fontFamily: "Arial", fontSize: 24, fill: "white"});
     restartMessage.position.set((renderer.width - restartMessage.width) / 2, renderer.height / 2 - 4);

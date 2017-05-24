@@ -18,4 +18,4 @@ var startVelocity = screen.width * 5/1920;
 var startJumpV = screen.width * 16/1920;
 var stoneArray, starArray;
 var animation;
-var score, level, velocity, jumping, groundY;
+var score, level, velocity, jumping, groundY, jumpV = startJumpV;
