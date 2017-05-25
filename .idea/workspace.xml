@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5c89fd4c-f9a4-4921-b966-0d36b677b8d6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/global.js" afterPath="$PROJECT_DIR$/js/global.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/ground.js" afterPath="$PROJECT_DIR$/js/ground.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/index.js" afterPath="$PROJECT_DIR$/js/index.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -33,18 +30,18 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="19" column="12" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="12" />
+            <state relative-caret-position="360">
+              <caret line="20" column="12" lean-forward="true" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ground.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ground.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/ground.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="23" column="41" lean-forward="true" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
+            <state relative-caret-position="298">
+              <caret line="127" column="43" lean-forward="false" selection-start-line="127" selection-start-column="43" selection-end-line="127" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -53,7 +50,7 @@
       <file leaf-file-name="sky.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/sky.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
+            <state relative-caret-position="-234">
               <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
               <folding />
             </state>
@@ -70,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="global.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="global.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/global.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="25" column="9" lean-forward="false" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+            <state relative-caret-position="270">
+              <caret line="15" column="36" lean-forward="false" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -95,6 +92,7 @@
       <find>88</find>
       <find>inn</find>
       <find>inner</find>
+      <find>44</find>
     </findStrings>
     <replaceStrings>
       <replace>window.innerWidth</replace>
@@ -110,8 +108,8 @@
         <option value="$PROJECT_DIR$/js/sky.js" />
         <option value="$PROJECT_DIR$/js/utils.js" />
         <option value="$PROJECT_DIR$/js/ground.js" />
-        <option value="$PROJECT_DIR$/js/global.js" />
         <option value="$PROJECT_DIR$/js/index.js" />
+        <option value="$PROJECT_DIR$/js/global.js" />
       </list>
     </option>
   </component>
@@ -301,7 +299,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15746000" />
+    <option name="totallyTimeSpent" value="16128000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="0" />
@@ -468,14 +466,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/sky.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/utils.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="558">
@@ -484,26 +474,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/global.js">
+    <entry file="file://$PROJECT_DIR$/js/sky.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="25" column="9" lean-forward="false" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="19" column="12" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="12" />
+        <state relative-caret-position="-234">
+          <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/ground.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="23" column="41" lean-forward="true" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
+        <state relative-caret-position="298">
+          <caret line="127" column="43" lean-forward="false" selection-start-line="127" selection-start-column="43" selection-end-line="127" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="20" column="12" lean-forward="true" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/global.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" column="36" lean-forward="false" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
           <folding />
         </state>
       </provider>
