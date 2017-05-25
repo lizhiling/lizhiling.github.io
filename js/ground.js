@@ -50,7 +50,10 @@ function renderNewGround(groundContainer, groundY) {
     groundContainer.addChild(groundContainerA);
 
     document.getElementsByTagName('canvas')[0].onclick = function () {
-        jumping = true;
+        if(md.y + md.height / 2 >= groundY || masterJumpTag){
+            jumpVDynamic = jumpV;
+            jumping = true;
+        }
     };
 }
 
