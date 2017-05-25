@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="5c89fd4c-f9a4-4921-b966-0d36b677b8d6" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/global.js" afterPath="$PROJECT_DIR$/js/global.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/ground.js" afterPath="$PROJECT_DIR$/js/ground.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/utils.js" afterPath="$PROJECT_DIR$/js/utils.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/index.js" afterPath="$PROJECT_DIR$/js/index.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -32,18 +33,18 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-725">
-              <caret line="15" column="18" lean-forward="false" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
+            <state relative-caret-position="72">
+              <caret line="19" column="12" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ground.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ground.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/ground.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
-              <caret line="51" column="70" lean-forward="false" selection-start-line="51" selection-start-column="70" selection-end-line="51" selection-end-column="70" />
+            <state relative-caret-position="414">
+              <caret line="23" column="41" lean-forward="true" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -59,7 +60,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="utils.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="utils.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/utils.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="558">
@@ -72,8 +73,8 @@
       <file leaf-file-name="global.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/global.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="2" column="3" lean-forward="false" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
+            <state relative-caret-position="450">
+              <caret line="25" column="9" lean-forward="false" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -90,7 +91,14 @@
       <find>jump</find>
       <find>rest</find>
       <find>hit</find>
+      <find>screen.width</find>
+      <find>88</find>
+      <find>inn</find>
+      <find>inner</find>
     </findStrings>
+    <replaceStrings>
+      <replace>window.innerWidth</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -100,10 +108,10 @@
       <list>
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/sky.js" />
-        <option value="$PROJECT_DIR$/js/global.js" />
-        <option value="$PROJECT_DIR$/js/index.js" />
         <option value="$PROJECT_DIR$/js/utils.js" />
         <option value="$PROJECT_DIR$/js/ground.js" />
+        <option value="$PROJECT_DIR$/js/global.js" />
+        <option value="$PROJECT_DIR$/js/index.js" />
       </list>
     </option>
   </component>
@@ -293,7 +301,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13070000" />
+    <option name="totallyTimeSpent" value="15746000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="0" />
@@ -460,14 +468,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/global.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="3" lean-forward="false" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/sky.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -476,26 +476,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="558">
+          <caret line="31" column="44" lean-forward="false" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/global.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="25" column="9" lean-forward="false" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-725">
-          <caret line="15" column="18" lean-forward="false" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
+        <state relative-caret-position="72">
+          <caret line="19" column="12" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/ground.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="51" column="70" lean-forward="false" selection-start-line="51" selection-start-column="70" selection-end-line="51" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/utils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="31" column="44" lean-forward="false" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
+        <state relative-caret-position="414">
+          <caret line="23" column="41" lean-forward="true" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
           <folding />
         </state>
       </provider>

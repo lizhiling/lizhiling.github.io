@@ -125,7 +125,7 @@ function moveStones() {
 
 
 var jumpVDynamic;
-const g = -10 / 60 * 3, jumpThreshold = -88;
+const g = -10 / 60 * 3, jumpThreshold = -44;
 
 function jumpMd() {
     if (jumping) {

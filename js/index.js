@@ -14,9 +14,9 @@ function loadProgressHandler(loader, resource) {
 
 
 function setup() {
-    renderer = autoDetectRenderer(screen.width * 0.7, screen.width * 0.7 * 0.6);
+    renderer = autoDetectRenderer(suitWindowSize(1024) * 0.8, suitWindowSize(1024) * 0.8 * 0.6);
     renderer.autoResize = true;
-    renderer.resize(screen.width * 0.7, screen.width * 0.7 * 0.6);
+    renderer.resize(suitWindowSize(1024) * 0.8, suitWindowSize(1024) * 0.8 * 0.6);
     document.body.appendChild(renderer.view);
     start();
 }
@@ -76,24 +76,24 @@ function updateScore(){
     velocity = startVelocity + level * 3;
     score += velocity/60;
     scoreMessage.text = 'Score:' + parseInt(score);
-    level = parseInt(score / 200);
+    level = score / 200;
 }
 
 
 function initText() {
     score = 0;
     restartMessage = new Text("Press SPACE to restart!",
-        {fontFamily: "Arial", fontSize: 24, fill: "white"});
+        {fontFamily: "Arial", fontSize: parseInt(suitWindowSize(24)), fill: "white"});
     restartMessage.position.set((renderer.width - restartMessage.width) / 2, renderer.height / 2 - 4);
     textContainer.addChild(restartMessage);
     restartMessage.visible = false;
 
-    scoreMessage = new Text('Score:' + score, {fontFamily: "Arial", fontSize: 20, fill: "white"});
+    scoreMessage = new Text('Score:' + score, {fontFamily: "Arial", fontSize: parseInt(suitWindowSize(20)), fill: "white"});
     scoreMessage.position.set(renderer.width - 150, 20);
     scoreMessage.visible = true;
     textContainer.addChild(scoreMessage);
 
-    buffMessage = new Text("Master Jumping~", {fontFamily: "Arial", fontSize: 24, fill: "white"});
+    buffMessage = new Text("Master Jumping~", {fontFamily: "Arial", fontSize: parseInt(suitWindowSize(24)), fill: "white"});
     buffMessage.position.set((renderer.width - restartMessage.width) / 2, renderer.height / 2 - 4);
     textContainer.addChild(buffMessage);
     buffMessage.visible = false;

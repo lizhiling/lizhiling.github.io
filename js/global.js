@@ -12,13 +12,17 @@ var Container = PIXI.Container,
 var renderer, stage, skyContainer, groundContainer, textContainer;
 const W = keyboard(87), SPACE = keyboard(32);
 var restartMessage, scoreMessage, buffMessage;
-const startVelocity = screen.width * 5/1920;
-const startJumpV = screen.width * 16/1920;
+const startVelocity = suitWindowSize(4);
+const startJumpV = suitWindowSize(16);
 var stoneArray, starArray;
 var animation;
 var score, level, velocity, jumping, groundY, jumpV = startJumpV;
 
-const jumpVAdd = 5;
+const jumpVAdd = suitWindowSize(5);
 var starBuffStartTime = undefined;
 var masterJumpTag = false;
 var starsGot = 0;
+
+function suitWindowSize(number) {
+    return window.innerWidth * number/1024;
+}
