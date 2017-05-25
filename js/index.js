@@ -92,4 +92,9 @@ function initText() {
     scoreMessage.position.set(renderer.width - 150, 20);
     scoreMessage.visible = true;
     textContainer.addChild(scoreMessage);
+
+    buffMessage = new Text("Master Jumping~", {fontFamily: "Arial", fontSize: 24, fill: "white"});
+    buffMessage.position.set((renderer.width - restartMessage.width) / 2, renderer.height / 2 - 4);
+    textContainer.addChild(buffMessage);
+    buffMessage.visible = false;
 }

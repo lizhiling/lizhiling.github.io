@@ -21,9 +21,6 @@ function produceStar(skyContainer) {
     starArray.push(star);
 }
 
-var starBuffStartTime = undefined;
-var decreaseVTag = false;
-const jumpVAdd = 5;
 function moveStars() {
     for (var i = 0; i < starArray.length; i++) {
         var star = starArray[i];
@@ -33,12 +30,18 @@ function moveStars() {
                 skyContainer.removeChild(star);
                 starArray.remove(star);
                 i--;
+                starsGot ++;
 
                 renderer.render(skyContainer);
-                if (starBuffStartTime===undefined){
-                    starBuffStartTime = new Date().getTime();
-                    jumpV += jumpVAdd;
+                starBuffStartTime = new Date().getTime();
+                if (starsGot === 1 || starsGot === 3){
+                    buffMessage.text = (starsGot === 1) ? "Master Jumping~": "PhD Jumping!!!";
+                    buffMessage.visible = true;
+                    setTimeout(function () {
+                        buffMessage.visible = false;
+                    }, 2000);
                 }
+
             }else{
                 star.x -= velocity;
                 if (star.x < -star.width) {
@@ -52,19 +55,20 @@ function moveStars() {
 
     }
 
-    if(starBuffStartTime!==undefined && starBuffStartTime < new Date().getTime()-10*1000){
-        starBuffStartTime = undefined;
-        decreaseVTag = true;
+    if(starBuffStartTime!==undefined && starsGot >= 1){
+        jumpV = jumpVAdd + startJumpV;
+    }
+    if (starBuffStartTime!==undefined && starsGot >= 3){
+        masterJumpTag = true;
     }
 
-}
+    if (starBuffStartTime!==undefined && starBuffStartTime < new Date().getTime()-10*1000){
+        starBuffStartTime = undefined;
+        masterJumpTag = false;
+        jumpV = startJumpV;
+        starsGot = 0;
+    }
 
-function getDecreaseVTag(){
-    return decreaseVTag;
-}
-
-function setDecreaseVTag(t) {
-    decreaseVTag = t;
 }
 
 function setStarBuffStartTime(time){

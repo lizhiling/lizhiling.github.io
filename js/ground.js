@@ -50,10 +50,6 @@ function renderNewGround(groundContainer, groundY) {
     groundContainer.addChild(groundContainerA);
 
     document.getElementsByTagName('canvas')[0].onclick = function () {
-        if (getDecreaseVTag()){
-            jumpV = startJumpV;
-            setDecreaseVTag(false);
-        }
         jumping = true;
     };
 }
@@ -134,7 +130,7 @@ function jumpMd() {
         jumpVDynamic += g;
         md.y = md.y - jumpVDynamic;
 
-        if (jumpVDynamic <= -jumpV || md.y + md.height / 2 >= groundY) {
+        if (md.y + md.height / 2 >= groundY) {
             jumpVDynamic = jumpV;
             md.y = groundY - md.height / 2;
             jumping = false;
@@ -151,11 +147,7 @@ function rollMd() {
 }
 
 W.press = function () {
-    if(md.y + md.height / 2 >= groundY){
-        if (getDecreaseVTag()){
-            jumpV = startJumpV;
-            setDecreaseVTag(false);
-        }
+    if(md.y + md.height / 2 >= groundY || masterJumpTag){
         jumpVDynamic = jumpV;
         jumping = true;
     }
