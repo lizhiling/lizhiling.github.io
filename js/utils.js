@@ -71,10 +71,7 @@ function allowRestart(text) {
     restartMessage.text = text+ '(Press SPACE to restart!)';
     restartMessage.visible = true;
     SPACE.press = function () {
-        start();
+        window.location.reload(true);
+        // start();
     };
-
-    // document.getElementsByTagName('canvas')[0].onclick = function () {
-    //     start();
-    // };
 }
