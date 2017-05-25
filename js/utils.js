@@ -67,7 +67,8 @@ Array.prototype.remove = function(val) {
 };
 
 
-function allowRestart() {
+function allowRestart(text) {
+    restartMessage.text = text+ '(Press SPACE to restart!)';
     restartMessage.visible = true;
     SPACE.press = function () {
         start();

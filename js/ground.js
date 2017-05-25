@@ -107,9 +107,7 @@ function moveStones() {
     for (var i = 0; i < stoneArray.length; i++) {
         var stone = stoneArray[i];
         if (hit(md, stone, 0.9)) {
-            console.log('fail');
-            cancelAnimationFrame(animation);
-            allowRestart();
+            gameOver("撞死啦～～")
         }
         if (stone.x < -stone.width) {
             stoneArray.remove(stone);
@@ -124,13 +122,17 @@ function moveStones() {
 
 
 var jumpVDynamic;
-const g = -10 / 60 * 3;
+const g = -10 / 60 * 3, jumpThreshold = -88;
+
 function jumpMd() {
     if (jumping) {
         jumpVDynamic += g;
         md.y = md.y - jumpVDynamic;
 
         if (md.y + md.height / 2 >= groundY) {
+            if(jumpVDynamic < jumpThreshold){
+                gameOver("摔死啦～～～")
+            }
             jumpVDynamic = jumpV;
             md.y = groundY - md.height / 2;
             jumping = false;
@@ -152,3 +154,9 @@ W.press = function () {
         jumping = true;
     }
 };
+
+function gameOver(text){
+    console.log('fail');
+    cancelAnimationFrame(animation);
+    allowRestart(text);
+}
