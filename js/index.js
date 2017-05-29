@@ -2,7 +2,7 @@
  * Created by li_zhil on 22/5/17.
  */
 loader.add(['../img/atlas.png',
-    '../img/stone.jpg',
+    '../img/stone.png',
     '../img/star.png'
 ]).on("progress", loadProgressHandler)
     .load(setup);
@@ -84,17 +84,17 @@ function initText() {
     score = 0;
     restartMessage = new Text("Press SPACE to restart!",
         {fontFamily: "Arial", fontSize: parseInt(suitWindowSize(24)), fill: "white"});
-    restartMessage.position.set((renderer.width - restartMessage.width) / 2, renderer.height / 2 - 4);
+    restartMessage.position.set((renderer.width - restartMessage.width) / 2, renderer.height / 2 - suitWindowSize(4));
     textContainer.addChild(restartMessage);
     restartMessage.visible = false;
 
     scoreMessage = new Text('Score:' + score, {fontFamily: "Arial", fontSize: parseInt(suitWindowSize(20)), fill: "white"});
-    scoreMessage.position.set(renderer.width - 150, 20);
+    scoreMessage.position.set(renderer.width - suitWindowSize(100), suitWindowSize(5));
     scoreMessage.visible = true;
     textContainer.addChild(scoreMessage);
 
     buffMessage = new Text("Master Jumping~", {fontFamily: "Arial", fontSize: parseInt(suitWindowSize(24)), fill: "white"});
-    buffMessage.position.set((renderer.width - restartMessage.width) / 2, renderer.height / 2 - 4);
+    buffMessage.position.set((renderer.width - restartMessage.width) / 2, renderer.height / 2 - suitWindowSize(4));
     textContainer.addChild(buffMessage);
     buffMessage.visible = false;
 }
