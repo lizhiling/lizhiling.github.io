@@ -3,7 +3,8 @@
  */
 loader.add(['../img/atlas.png',
     '../img/stone.png',
-    '../img/star.png'
+    '../img/star.png',
+    '../img/brickwall.png'
 ]).on("progress", loadProgressHandler)
     .load(setup);
 
@@ -50,6 +51,8 @@ function initGround() {
     jumping = false;
     jumpV = startJumpV;
     stoneArray = new Array();
+    //test producing
+    stairArray = new Array();
     renderNewGround(groundContainer, groundY);
 }
 
@@ -65,10 +68,18 @@ function mdAnimation() {
     randomProduceStone(groundContainer);
     moveGround(groundContainer);
     moveStones(groundContainer);
+    //test producing
+    randomProduceStair(groundContainer);
+    moveStairs(groundContainer);
+
     moveStars(skyContainer);
     jumpMd(groundContainer);
     rollMd(groundContainer);
     updateScore(textContainer);
+    //test producing stait
+
+
+
     renderer.render(stage);
 }
 

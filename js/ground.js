@@ -105,6 +105,45 @@ function produceStone(groundContainer) {
     stoneArray.push(stone);
 }
 
+//test producing stair for pig to roll on
+function randomProduceStair(groundContainer) {
+    var frequency = 2;
+    var maxStoneNo = 4;
+    var r = Math.random();
+    if (r < 1 / (60 * frequency) && stairArray.length < maxStoneNo) {
+        if(stairArray[stairArray.length - 1] == undefined || stairArray[stairArray.length - 1].getGlobalPosition().x < renderer.width*0.8){
+            produceStair(groundContainer);
+        }
+    }
+}
+function produceStair(groundContainer){
+    var stair = new Sprite(resources["../img/brickwall.png"].texture);
+    stair.anchor.set(0.5, 0.5);
+    stair.width = md.width * 0.6;
+    stair.height = md.height * 0.6;
+    stair.x = renderer.width + stair.width/2;
+    stair.y = groundY - stair.height/2;
+    groundContainer.addChild(stair);
+
+    stairArray.push(stair);
+    console.log("stair produced");
+}
+function moveStairs() {
+    for (var i = 0; i < stairArray.length; i++) {
+        var stair = stairArray[i];
+        if (stair.x < -stair.width) {
+            stairArray.remove(stair);
+            stair.destroy();
+            i--;
+        } else{
+            stair.x -= velocity;
+        }
+    }
+
+}
+
+////////////////////////
+
 
 function moveStones() {
     for (var i = 0; i < stoneArray.length; i++) {

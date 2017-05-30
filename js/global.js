@@ -15,6 +15,8 @@ var restartMessage, scoreMessage, buffMessage;
 const startVelocity = suitWindowSize(4);
 const startJumpV = suitWindowSize(10);
 var stoneArray, starArray;
+//test producing
+var stairArray;
 var animation;
 var score, level, velocity, jumping, groundY, jumpV = startJumpV;
 
