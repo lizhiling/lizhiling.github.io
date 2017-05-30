@@ -86,7 +86,6 @@ function initText() {
     score = 0;
     centerMessage = new Text("Press SPACE to restart!",
         {fontFamily: "Arial", fontSize: parseInt(suitWindowSize(24)), fill: "white"});
-    centerMessage.position.set((renderer.width - centerMessage.width) / 2, renderer.height / 2 - suitWindowSize(4));
     textContainer.addChild(centerMessage);
     centerMessage.visible = false;
 
