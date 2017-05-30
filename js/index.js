@@ -27,6 +27,8 @@ function start() {
     renderer.render(stage);
 
     mdAnimation();
+
+    ENTER.press = pauseGame;
 }
 
 function init() {
@@ -82,19 +84,14 @@ function updateScore(){
 
 function initText() {
     score = 0;
-    restartMessage = new Text("Press SPACE to restart!",
+    centerMessage = new Text("Press SPACE to restart!",
         {fontFamily: "Arial", fontSize: parseInt(suitWindowSize(24)), fill: "white"});
-    restartMessage.position.set((renderer.width - restartMessage.width) / 2, renderer.height / 2 - suitWindowSize(4));
-    textContainer.addChild(restartMessage);
-    restartMessage.visible = false;
+    centerMessage.position.set((renderer.width - centerMessage.width) / 2, renderer.height / 2 - suitWindowSize(4));
+    textContainer.addChild(centerMessage);
+    centerMessage.visible = false;
 
     scoreMessage = new Text('Score:' + score, {fontFamily: "Arial", fontSize: parseInt(suitWindowSize(20)), fill: "white"});
     scoreMessage.position.set(renderer.width - suitWindowSize(100), suitWindowSize(5));
     scoreMessage.visible = true;
     textContainer.addChild(scoreMessage);
-
-    buffMessage = new Text("Master Jumping~", {fontFamily: "Arial", fontSize: parseInt(suitWindowSize(24)), fill: "white"});
-    buffMessage.position.set((renderer.width - restartMessage.width) / 2, renderer.height / 2 - suitWindowSize(4));
-    textContainer.addChild(buffMessage);
-    buffMessage.visible = false;
 }

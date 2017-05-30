@@ -66,10 +66,39 @@ Array.prototype.remove = function(val) {
 
 
 function allowRestart(text) {
-    restartMessage.text = text+ '(Press SPACE to restart!)';
-    restartMessage.visible = true;
+    showCenterMessage(text+ '(Press SPACE to restart!)');
     SPACE.press = function () {
         window.location.reload(true);
         // start();
     };
+}
+
+function pauseGame(){
+    pause = !pause;
+    if (pause) {
+        showCenterMessage("Enjoy your coffee break :)");
+        console.log('pause');
+        cancelAnimationFrame(animation);
+    } else {
+        showCenterMessage();
+        console.log('resume');
+        requestAnimationFrame(mdAnimation);
+    }
+    renderer.render(stage);
+}
+
+function showCenterMessage(text, timeInSec){
+    if(text){
+        centerMessage.text = text;
+        centerMessage.position.set((renderer.width - centerMessage.width) / 2, renderer.height / 2 - suitWindowSize(4));
+        centerMessage.visible = true;
+        if(timeInSec){
+            setTimeout(function () {
+                centerMessage.visible = false;
+            }, timeInSec*1000);
+        }
+    }else{
+        centerMessage.visible = false;
+    }
+    renderer.render(centerMessage);
 }
