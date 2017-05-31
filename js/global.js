@@ -10,13 +10,14 @@ var Container = PIXI.Container,
     Text = PIXI.Text;
 
 var renderer, stage, skyContainer, groundContainer, textContainer;
-const W = keyboard(87), SPACE = keyboard(32);
-var restartMessage, scoreMessage, buffMessage;
+const W = keyboard(87), SPACE = keyboard(32), ENTER = keyboard(13);
+var centerMessage, scoreMessage;
 const startVelocity = suitWindowSize(4);
 const startJumpV = suitWindowSize(10);
 var stoneArray, starArray;
 var animation;
 var score, level, velocity, jumping, groundY, jumpV = startJumpV;
+var pause = false;
 
 const jumpVAdd = suitWindowSize(4);
 var starBuffStartTime = undefined;

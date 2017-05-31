@@ -161,5 +161,6 @@ W.press = function () {
 function gameOver(text){
     console.log('fail');
     cancelAnimationFrame(animation);
+    ENTER.press = undefined;
     allowRestart(text);
 }

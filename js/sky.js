@@ -35,11 +35,8 @@ function moveStars() {
                 renderer.render(skyContainer);
                 starBuffStartTime = new Date().getTime();
                 if (starsGot === 1 || starsGot === 3){
-                    buffMessage.text = (starsGot === 1) ? "Master Jumping~": "PhD Jumping!!!";
-                    buffMessage.visible = true;
-                    setTimeout(function () {
-                        buffMessage.visible = false;
-                    }, 2000);
+                    var text = (starsGot === 1) ? "Master Jumping~": "PhD Jumping!!!";
+                    showCenterMessage(text, 2)
                 }
 
             }else{
