@@ -1,11 +1,9 @@
 /**
  * Created by li_zhil on 23/5/17.
  */
-var groundContainerA, groundContainerB, md;
+var groundContainerA, groundContainerB, md, dog, groundLine;
 
 function renderNewGround(groundContainer, groundY) {
-    jumpVDynamic = jumpV;
-
     md = new Sprite(resources["../img/atlas.png"].texture);
     md.height = 0.15 * renderer.height;
     md.width = md.height;
@@ -14,17 +12,38 @@ function renderNewGround(groundContainer, groundY) {
     md.anchor.x = 0.5;
     md.anchor.y = 0.5;
 
-    groundContainer.addChild(md);
+    dog = new Sprite(resources["../img/dog1.png"].texture);
+    dog.height = md.height;
+    dog.width = md.width;
+    dog.x = 0.2 * renderer.width;
+    dog.y = groundY - 3*md.height / 2;
+    dog.anchor.x = 0.5;
+    dog.anchor.y = 0.5;
 
+    md.jumpVDynamic = 0;
+    dog.jumpVDynamic = 0;
+    md.jumping = false;
+    dog.jumping = false;
+    md.masterJumpTag = false;
+    dog.masterJumpTag = false;
+    md.buffTimeout = undefined;
+    dog.buffTimeout = undefined;
+
+    groundContainer.addChild(md);
+    groundContainer.addChild(dog);
+
+    ableToPropUpArray.push(md);
+    ableToPropUpArray.push(dog);
 
     groundContainerA = new Container();
     groundContainerB = new Container();
 
-    var groundLine = new Graphics();
+    groundLine = new Graphics();
     groundLine.lineStyle(4, 0xFFFFFF, 1);
     groundLine.moveTo(0, groundY);
     groundLine.lineTo(renderer.width, groundY);
     groundContainer.addChild(groundLine);
+    ableToPropUpArray.push(groundLine);
 
     var decorateLine1 = decorateLine(0, 1.15 * groundY, renderer.width*0.2);
     var decorateLine1copy = decorateLine(0 + renderer.width, 1.15 * groundY, renderer.width*0.2);
@@ -49,12 +68,12 @@ function renderNewGround(groundContainer, groundY) {
     groundContainer.addChild(groundContainerB);
     groundContainer.addChild(groundContainerA);
 
-    document.getElementsByTagName('canvas')[0].onclick = function () {
-        if(md.y + md.height / 2 >= groundY || masterJumpTag){
-            jumpVDynamic = jumpV;
-            jumping = true;
-        }
-    };
+    // document.getElementsByTagName('canvas')[0].onclick = function () {
+    //     if(md.y + md.height / 2 >= groundY || masterJumpTag){
+    //         jumpVDynamic = jumpV;
+    //         jumping = true;
+    //     }
+    // };
 }
 
 function decorateLine(x, y, width) {
@@ -79,6 +98,10 @@ function moveGround() {
 
 function getMd(){
     return md;
+}
+
+function getDog() {
+    return dog;
 }
 
 
@@ -109,7 +132,7 @@ function produceStone(groundContainer) {
 function moveStones() {
     for (var i = 0; i < stoneArray.length; i++) {
         var stone = stoneArray[i];
-        if (hit(md, stone, 0.95)) {
+        if (hit(md, stone, 0.95) || hit(dog, stone, 0.95)) {
             gameOver("撞死啦～～")
         }
         if (stone.x < -stone.width) {
@@ -123,26 +146,63 @@ function moveStones() {
 
 }
 
-
-var jumpVDynamic;
 const g = suitWindowSize(-10 / 60 * 3), jumpThreshold = suitWindowSize(-30);
 
-function jumpMd() {
-    if (jumping) {
-        jumpVDynamic += g;
-        md.y = md.y - jumpVDynamic;
-
-        if (md.y + md.height / 2 >= groundY) {
-            if(jumpVDynamic < jumpThreshold){
-                gameOver("摔死啦～～～")
-            }
-            jumpVDynamic = jumpV;
-            md.y = groundY - md.height / 2;
-            jumping = false;
+function jump(character_ele) {
+    var supportEle = detectOnTopOfPropUp(character_ele);
+    if (character_ele.jumping) {
+        character_ele.jumpVDynamic += g;
+        character_ele.y = character_ele.y - character_ele.jumpVDynamic;
+    } else if (!character_ele.jumping && supportEle==null) {
+        character_ele.jumpVDynamic += g;
+        character_ele.y = character_ele.y - character_ele.jumpVDynamic;
+    }
+    if (supportEle!=null) {
+        if(character_ele.jumpVDynamic < jumpThreshold){
+            gameOver("摔死啦～～～")
+        }
+        character_ele.jumping = false;
+        character_ele.jumpVDynamic = 0;
+        if(supportEle.anchor == undefined){
+            character_ele.y = supportEle.getLocalBounds().y - character_ele.height / 2;
+        }else{
+            character_ele.y = supportEle.y - supportEle.height*supportEle.anchor.y - character_ele.height / 2;
         }
     }
 }
 
+/**
+ * Detect whether element is on the top of a supportable element
+ * @param ele
+ */
+function detectOnTopOfPropUp(ele){
+    if(ele.jumpVDynamic<=0){
+        for(var i = 0; i<ableToPropUpArray.length; i++){
+            var ele2 = ableToPropUpArray[i];
+            if (ele2.anchor == undefined){ //ele2 is a PIXI.Graphics
+                if (Math.abs(ele.x-ele.width*ele.anchor.x-ele2.getLocalBounds().x)<(ele.width+ele2.width)/2
+                    && ele2.getLocalBounds().y-(ele.y-ele.height*ele.anchor.y)<=1.1*ele.height
+                    && ele2.getLocalBounds().y-(ele.y-ele.height*ele.anchor.y)>0.7*ele.height){
+                    return ele2;
+                }
+            }else if (Math.abs(ele.x-ele.width*ele.anchor.x-(ele2.x-ele2.width*ele2.anchor.x))<(ele.width+ele2.width)/2
+                && ele2.y-ele2.height*ele2.anchor.y-(ele.y-ele.height*ele.anchor.y)<=1.1*ele.height
+                && ele2.y-ele2.height*ele2.anchor.y-(ele.y-ele.height*ele.anchor.y)>0.9*ele.height){
+                return ele2;
+            }
+        }
+    }
+    return null;
+}
+
+function jumpMd() {
+    jump(md)
+}
+
+
+function jumpDog() {
+    jump(dog)
+}
 
 var rotate = 0;
 const rotateG = 3 / 60;
@@ -152,9 +212,16 @@ function rollMd() {
 }
 
 W.press = function () {
-    if(md.y + md.height / 2 >= groundY || masterJumpTag){
-        jumpVDynamic = jumpV;
-        jumping = true;
+    if(md.y + md.height / 2 >= groundY || md.masterJumpTag || detectOnTopOfPropUp(md)){
+        md.jumpVDynamic = jumpV;
+        md.jumping = true;
+    }
+};
+
+P.press = function () {
+    if(dog.y + dog.height / 2 >= groundY || dog.masterJumpTag || detectOnTopOfPropUp(dog)){
+        dog.jumpVDynamic = jumpV;
+        dog.jumping = true;
     }
 };
 

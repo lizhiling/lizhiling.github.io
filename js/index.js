@@ -3,7 +3,8 @@
  */
 loader.add(['../img/atlas.png',
     '../img/stone.png',
-    '../img/star.png'
+    '../img/star.png',
+    '../img/dog1.png'
 ]).on("progress", loadProgressHandler)
     .load(setup);
 
@@ -47,9 +48,9 @@ function init() {
 }
 
 function initGround() {
+    ableToPropUpArray = [];
     velocity = startVelocity;
     SPACE.press = null;
-    jumping = false;
     jumpV = startJumpV;
     stoneArray = new Array();
     renderNewGround(groundContainer, groundY);
@@ -58,7 +59,6 @@ function initGround() {
 function initSky() {
     starArray = new Array();
     level = 0;
-    setStarBuffStartTime(undefined);
 }
 
 function mdAnimation() {
@@ -68,7 +68,8 @@ function mdAnimation() {
     moveGround(groundContainer);
     moveStones(groundContainer);
     moveStars(skyContainer);
-    jumpMd(groundContainer);
+    jumpMd();
+    jumpDog();
     rollMd(groundContainer);
     updateScore(textContainer);
     renderer.render(stage);
