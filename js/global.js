@@ -19,6 +19,7 @@ var animation;
 var score, level, velocity, groundY, jumpV = startJumpV;
 var pause = false;
 var ableToPropUpArray;
+const appSize = 0.8;
 
 const jumpVAdd = suitWindowSize(4);
 

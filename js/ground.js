@@ -150,13 +150,6 @@ const g = suitWindowSize(-10 / 60 * 3), jumpThreshold = suitWindowSize(-30);
 
 function jump(character_ele) {
     var supportEle = detectOnTopOfPropUp(character_ele);
-    if (character_ele.jumping) {
-        character_ele.jumpVDynamic += g;
-        character_ele.y = character_ele.y - character_ele.jumpVDynamic;
-    } else if (!character_ele.jumping && supportEle==null) {
-        character_ele.jumpVDynamic += g;
-        character_ele.y = character_ele.y - character_ele.jumpVDynamic;
-    }
     if (supportEle!=null) {
         if(character_ele.jumpVDynamic < jumpThreshold){
             gameOver("摔死啦～～～")
@@ -164,10 +157,18 @@ function jump(character_ele) {
         character_ele.jumping = false;
         character_ele.jumpVDynamic = 0;
         if(supportEle.anchor == undefined){
-            character_ele.y = supportEle.getLocalBounds().y - character_ele.height / 2;
+            character_ele.y = supportEle.getLocalBounds().y - character_ele.height*character_ele.anchor.y;
         }else{
-            character_ele.y = supportEle.y - supportEle.height*supportEle.anchor.y - character_ele.height / 2;
+            character_ele.y = supportEle.y - supportEle.height*supportEle.anchor.y - character_ele.height*character_ele.anchor.y;
         }
+    }
+
+    if (character_ele.jumping) {
+        character_ele.jumpVDynamic += g;
+        character_ele.y = character_ele.y - character_ele.jumpVDynamic;
+    } else if (!character_ele.jumping && supportEle==null) {
+        character_ele.jumpVDynamic += g;
+        character_ele.y = character_ele.y - character_ele.jumpVDynamic;
     }
 }
 
@@ -187,7 +188,7 @@ function detectOnTopOfPropUp(ele){
                 }
             }else if (Math.abs(ele.x-ele.width*ele.anchor.x-(ele2.x-ele2.width*ele2.anchor.x))<(ele.width+ele2.width)/2
                 && ele2.y-ele2.height*ele2.anchor.y-(ele.y-ele.height*ele.anchor.y)<=1.1*ele.height
-                && ele2.y-ele2.height*ele2.anchor.y-(ele.y-ele.height*ele.anchor.y)>0.9*ele.height){
+                && ele2.y-ele2.height*ele2.anchor.y-(ele.y-ele.height*ele.anchor.y)>0.7*ele.height){
                 return ele2;
             }
         }
