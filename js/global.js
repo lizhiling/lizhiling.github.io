@@ -10,19 +10,18 @@ var Container = PIXI.Container,
     Text = PIXI.Text;
 
 var renderer, stage, skyContainer, groundContainer, textContainer;
-const W = keyboard(87), SPACE = keyboard(32), ENTER = keyboard(13);
+const W = keyboard(87), P = keyboard(80), SPACE = keyboard(32), ENTER = keyboard(13);
 var centerMessage, scoreMessage;
 const startVelocity = suitWindowSize(4);
 const startJumpV = suitWindowSize(10);
 var stoneArray, starArray;
 var animation;
-var score, level, velocity, jumping, groundY, jumpV = startJumpV;
+var score, level, velocity, groundY, jumpV = startJumpV;
 var pause = false;
+var ableToPropUpArray;
+const appSize = 0.8;
 
 const jumpVAdd = suitWindowSize(4);
-var starBuffStartTime = undefined;
-var masterJumpTag = false;
-var starsGot = 0;
 
 function suitWindowSize(number) {
     return window.innerWidth * number/1024;

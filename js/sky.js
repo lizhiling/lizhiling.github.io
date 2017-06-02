@@ -24,50 +24,52 @@ function produceStar(skyContainer) {
 function moveStars() {
     for (var i = 0; i < starArray.length; i++) {
         var star = starArray[i];
-            if (hit(getMd(), star, 1)) {
-                console.log('got star!');
+        if(hit(getMd(), star, 1)){
+            i--;
+            gotStar(getMd(), star);
+        } else if (hit(getDog(), star, 1)) {
+            i--;
+            gotStar(getDog(), star);
+        } else {
+            star.x -= velocity;
+            if (star.x < -star.width) {
                 star.destroy();
                 skyContainer.removeChild(star);
                 starArray.remove(star);
                 i--;
-                starsGot ++;
-
                 renderer.render(skyContainer);
-                starBuffStartTime = new Date().getTime();
-                if (starsGot === 1 || starsGot === 3){
-                    var text = (starsGot === 1) ? "Master Jumping~": "PhD Jumping!!!";
-                    showCenterMessage(text, 2)
-                }
-
-            }else{
-                star.x -= velocity;
-                if (star.x < -star.width) {
-                    star.destroy();
-                    skyContainer.removeChild(star);
-                    starArray.remove(star);
-                    i--;
-                    renderer.render(skyContainer);
-                }
             }
-
+        }
     }
-
-    if(starBuffStartTime!==undefined && starsGot >= 1){
-        jumpV = jumpVAdd + startJumpV;
-    }
-    if (starBuffStartTime!==undefined && starsGot >= 3){
-        masterJumpTag = true;
-    }
-
-    if (starBuffStartTime!==undefined && starBuffStartTime < new Date().getTime()-10*1000){
-        starBuffStartTime = undefined;
-        masterJumpTag = false;
-        jumpV = startJumpV;
-        starsGot = 0;
-    }
-
 }
 
-function setStarBuffStartTime(time){
-    starBuffStartTime = time;
+function gotStar(character, star){
+    console.log('Mengdan got star!');
+    star.destroy();
+    skyContainer.removeChild(star);
+    starArray.remove(star);
+    updateBuff(character);
+    renderer.render(skyContainer);
+}
+
+/**
+ * note: do not use this to clear buff
+ * @param character
+ */
+function updateBuff(character){
+    character.starsGot = character.starsGot + 1;
+    if (character.starsGot === 1 || character.starsGot === 3) {
+        var text = (character.starsGot === 1) ? "Master Jumping~" : "PhD Jumping!!!";
+        showCenterMessage(text, 2);
+    }
+    if(character.starsGot >=3){
+        character.masterJumpTag = true;
+    }else {
+        character.jumpV = jumpVAdd + startJumpV;
+    }
+    character.buffTimeout = setTimeout(function () {
+        character.masterJumpTag = false;
+        character.jumpV = startJumpV;
+        character.starsGot = 0;
+    }, 10)
 }
