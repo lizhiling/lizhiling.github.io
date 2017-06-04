@@ -119,10 +119,10 @@ function randomProduceStair(groundContainer) {
 function produceStair(groundContainer){
     var stair = new Sprite(resources["../img/brickwall.png"].texture);
     stair.anchor.set(0.5, 0.5);
-    stair.width = md.width * 0.6;
+    stair.width = md.width * 2.4; //set width of stair according to width of pig
     stair.height = md.height * 0.6;
     stair.x = renderer.width + stair.width/2;
-    stair.y = groundY - stair.height/2;
+    stair.y = groundY - stair.width; //relatively set y axis of stait equal to width of stair
     groundContainer.addChild(stair);
 
     stairArray.push(stair);
