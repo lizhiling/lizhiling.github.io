@@ -53,6 +53,7 @@ function renderNewGround(groundContainer, groundY) {
         if(md.y + md.height / 2 >= groundY || masterJumpTag){
             jumpVDynamic = jumpV;
             jumping = true;
+
         }
     };
 }
@@ -75,6 +76,7 @@ function moveGround() {
     if(groundContainerB.position.x < -renderer.width){
         groundContainerB.position.x = 0;
     }
+    detectOnTopOfPropUp(md);
 }
 
 function getMd(){
@@ -166,8 +168,11 @@ function moveStones() {
 var jumpVDynamic;
 const g = suitWindowSize(-10 / 60 * 3), jumpThreshold = suitWindowSize(-30);
 
+
 function jumpMd() {
     if (jumping) {
+        console.log("md.y"+md.y);
+        console.log("jumpVDynamic"+jumpVDynamic);
         jumpVDynamic += g;
         md.y = md.y - jumpVDynamic;
 
@@ -179,7 +184,45 @@ function jumpMd() {
             md.y = groundY - md.height / 2;
             jumping = false;
         }
+
+        if(detectOnTopOfPropUp(md)){
+            md.y = md.width*2.9;
+            jumping = false;
+            console.log("pig on brick");
+            tempJumpVDynamic = jumpVDynamic;
+            onBrick = true;
+        }
+
     }
+}
+
+
+/**
+ * Detect whether element is on the top of a supportable element
+ * @param ele
+ */
+function detectOnTopOfPropUp(ele){
+    
+        for(var i = 0; i<stairArray.length; i++){
+            var ele2 = stairArray[i];
+            if (ele2.anchor == undefined){ //ele2 is a PIXI.Graphics
+                if (Math.abs(ele.x-ele.width*ele.anchor.x-ele2.getLocalBounds().x)<(ele.width+ele2.width)/2
+                    && ele2.getLocalBounds().y-(ele.y-ele.height*ele.anchor.y)<=1.1*ele.height
+                    && ele2.getLocalBounds().y-(ele.y-ele.height*ele.anchor.y)>0.7*ele.height){
+                    return ele2;
+                }
+            }else if (Math.abs(ele.x-ele.width*ele.anchor.x-(ele2.x-ele2.width*ele2.anchor.x))<(ele.width+ele2.width)/2
+                && ele2.y-ele2.height*ele2.anchor.y-(ele.y-ele.height*ele.anchor.y)<=1.1*ele.height
+                && ele2.y-ele2.height*ele2.anchor.y-(ele.y-ele.height*ele.anchor.y)>0.7*ele.height){
+                return ele2;
+            }
+        }
+    if(onBrick){
+        jumping = true;
+        jumpVDynamic = tempJumpVDynamic;
+        onBrick = false;
+    }
+    return false;
 }
 
 
@@ -191,7 +234,7 @@ function rollMd() {
 }
 
 W.press = function () {
-    if(md.y + md.height / 2 >= groundY || masterJumpTag){
+    if(md.y + md.height / 2 >= groundY || masterJumpTag||detectOnTopOfPropUp(md)){
         jumpVDynamic = jumpV;
         jumping = true;
     }

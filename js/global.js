@@ -24,6 +24,10 @@ const jumpVAdd = suitWindowSize(4);
 var starBuffStartTime = undefined;
 var masterJumpTag = false;
 var starsGot = 0;
+///////////////used for stay on brick
+var onBrick = false;
+var tempJumpVDynamic = 0;
+
 
 function suitWindowSize(number) {
     return window.innerWidth * number/1024;
