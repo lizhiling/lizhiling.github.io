@@ -3,7 +3,11 @@
  */
 loader.add(['../img/atlas.png',
     '../img/stone.png',
-    '../img/star.png'
+    '../img/star.png',
+    '../img/comet_part1x1.png',
+    '../img/comet_part1x2.png',
+    '../img/comet_part2x1.png',
+    '../img/comet_part2x2.png'
 ]).on("progress", loadProgressHandler)
     .load(setup);
 
@@ -59,6 +63,7 @@ function initSky() {
     starArray = new Array();
     level = 0;
     setStarBuffStartTime(undefined);
+    initCometParts();
 }
 
 function mdAnimation() {
@@ -71,6 +76,10 @@ function mdAnimation() {
     jumpMd(groundContainer);
     rollMd(groundContainer);
     updateScore(textContainer);
+    // if (velocity > 1.5*startVelocity){
+        produceComet();
+        moveComet();
+    // }
     renderer.render(stage);
 }
 

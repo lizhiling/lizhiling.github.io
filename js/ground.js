@@ -7,6 +7,7 @@ function renderNewGround(groundContainer, groundY) {
     jumpVDynamic = jumpV;
 
     md = new Sprite(resources["../img/atlas.png"].texture);
+    md.name = "MD";
     md.height = 0.15 * renderer.height;
     md.width = md.height;
     md.x = 0.2 * renderer.width;
@@ -95,7 +96,8 @@ function randomProduceStone(groundContainer) {
 
 function produceStone(groundContainer) {
     var stone = new Sprite(resources["../img/stone.png"].texture);
-    stone.anchor.set(0.5, 0.5);
+    stone.anchor.set(0.5,0.5);
+    stone.name = "STONE";
     stone.width = md.width * 0.6;
     stone.height = md.height * 0.6;
     stone.x = renderer.width + stone.width/2;
@@ -108,6 +110,10 @@ function produceStone(groundContainer) {
 
 function moveStones() {
     for (var i = 0; i < stoneArray.length; i++) {
+        if(stoneArray[i]==null){
+            console.log('stone is null');
+            stoneArray.remove(stoneArray[i]);
+        }
         var stone = stoneArray[i];
         if (hit(md, stone, 0.95)) {
             gameOver("撞死啦～～")
