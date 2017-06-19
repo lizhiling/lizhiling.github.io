@@ -37,17 +37,17 @@ function keyboard(keyCode) {
     return key;
 }
 
-function hit(md, item, tolerate) {
-    try{
-        var x1 = md.x;
-        var x2 = item.x;
-        var y1 = md.y;
-        var y2 = item.y;
-        return Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2)) < (md.width/2 + item.width/2)*tolerate;
-    }catch (TypeError){
-        return false;
-    }
-}
+// function hit(md, item, tolerate) {
+//     try{
+//         var x1 = md.x;
+//         var x2 = item.x;
+//         var y1 = md.y;
+//         var y2 = item.y;
+//         return Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2)) < (md.width/2 + item.width/2)*tolerate;
+//     }catch (TypeError){
+//         return false;
+//     }
+// }
 
 
 Array.prototype.indexOf = function(val) {

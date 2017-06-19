@@ -18,6 +18,7 @@ function setup() {
     renderer.autoResize = true;
     renderer.resize(suitWindowSize(1024) * 0.8, suitWindowSize(1024) * 0.8 * 0.6);
     document.body.appendChild(renderer.view);
+    bump= new Bump(renderer);
     start();
 }
 

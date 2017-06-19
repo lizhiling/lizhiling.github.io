@@ -9,7 +9,7 @@ var Container = PIXI.Container,
     Graphics = PIXI.Graphics,
     Text = PIXI.Text;
 
-var renderer, stage, skyContainer, groundContainer, textContainer;
+var renderer, bump, stage, skyContainer, groundContainer, textContainer;
 const W = keyboard(87), SPACE = keyboard(32), ENTER = keyboard(13);
 var centerMessage, scoreMessage;
 const startVelocity = suitWindowSize(4);

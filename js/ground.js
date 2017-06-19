@@ -109,7 +109,7 @@ function produceStone(groundContainer) {
 function moveStones() {
     for (var i = 0; i < stoneArray.length; i++) {
         var stone = stoneArray[i];
-        if (hit(md, stone, 0.95)) {
+        if (bump.hitTestCircle(md, stone, true)) {
             gameOver("撞死啦～～")
         }
         if (stone.x < -stone.width) {
