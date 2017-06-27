@@ -98,6 +98,7 @@ function produceStone(groundContainer) {
     stone.anchor.set(0.5, 0.5);
     stone.width = md.width * 0.6;
     stone.height = md.height * 0.6;
+    md.diameter = true;
     stone.x = renderer.width + stone.width/2;
     stone.y = groundY - stone.height/2;
     groundContainer.addChild(stone);

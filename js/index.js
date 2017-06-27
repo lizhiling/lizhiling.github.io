@@ -3,7 +3,8 @@
  */
 loader.add(['../img/atlas.png',
     '../img/stone.png',
-    '../img/star.png'
+    '../img/star.png',
+    '../img/wall.png'
 ]).on("progress", loadProgressHandler)
     .load(setup);
 
@@ -58,6 +59,7 @@ function initGround() {
 
 function initSky() {
     starArray = new Array();
+    wallArray = new Array();
     level = 0;
     setStarBuffStartTime(undefined);
 }
@@ -65,8 +67,10 @@ function initSky() {
 function mdAnimation() {
     animation = requestAnimationFrame(mdAnimation);
     randomProduceStar(skyContainer);
+    randomProduceWall(skyContainer);
     randomProduceStone(groundContainer);
     moveGround(groundContainer);
+    moveWall(skyContainer);
     moveStones(groundContainer);
     moveStars(skyContainer);
     jumpMd(groundContainer);
@@ -76,10 +80,14 @@ function mdAnimation() {
 }
 
 function updateScore(){
-    velocity = startVelocity + level * 3;
-    score += velocity/60;
-    scoreMessage.text = 'Score:' + parseInt(score);
-    level = score / 200;
+    if (touchWallLeft){
+        velocity = 0;
+    }else{
+        velocity = startVelocity + level * 3;
+        score += velocity/60;
+        scoreMessage.text = 'Score:' + parseInt(score);
+        level = score / 200;
+    }
 }
 
 
