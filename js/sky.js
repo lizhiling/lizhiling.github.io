@@ -24,7 +24,7 @@ function produceStar(skyContainer) {
 function moveStars() {
     for (var i = 0; i < starArray.length; i++) {
         var star = starArray[i];
-            if (hit(getMd(), star, 1)) {
+            if (bump.hit(getMd(), star)) {
                 console.log('got star!');
                 star.destroy();
                 skyContainer.removeChild(star);
