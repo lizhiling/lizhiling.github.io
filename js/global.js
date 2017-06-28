@@ -23,7 +23,7 @@ const jumpVAdd = suitWindowSize(4);
 var starBuffStartTime = undefined;
 var masterJumpTag = false;
 var starsGot = 0;
-var touchWallLeft = false;
+var touchWallLeft = false, touchWallTop=false;
 
 function suitWindowSize(number) {
     return window.innerWidth * number/1024;

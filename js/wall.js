@@ -15,21 +15,28 @@ function produceWall(skyContainer) {
     wall.height = getMd().height * 0.4;
     wall.width = wall.height*2 + wall.height * 3 * Math.random();
     wall.x = renderer.width;
-    wall.y = (groundY-wall.height) * (Math.random() * 0.5 + 0.4);
+    wall.y = (renderer.height*0.65-wall.height) * (0.8*Math.random() + 0.2);
     wall.mass = Number.MAX_SAFE_INTEGER;
     skyContainer.addChild(wall);
     wallArray.push(wall);
 }
 
-var stackedWall;
+var stackedWall, supportedWall;
 function moveWall() {
-    for (var i = 0; i < wallArray.length; i++) {
-        var wall = wallArray[i];
-        var hitPoint = bump.hit(getMd(), wall, true, true, true);
-        if (hitPoint == 'right') {
+    bump.hit(getMd(), wallArray, true, true, true, function (collision, platform) {
+        if (collision === 'right') {
             touchWallLeft = true;
-            stackedWall = wall
-        }else {
+            stackedWall = platform;
+        }
+        if (collision === 'bottom') {
+            touchWallTop = true;
+            supportedWall = platform;
+        }
+    });
+
+    if(!touchWallLeft){
+        for (var i = 0; i < wallArray.length; i++) {
+            var wall = wallArray[i];
             wall.x -= velocity;
             if (wall.x < -wall.width) {
                 wall.destroy();
@@ -40,11 +47,19 @@ function moveWall() {
             }
         }
     }
+
     if(stackedWall){
-        if (getMd().y - stackedWall.getGlobalPosition().y > 0.5 * getMd().height
-            || stackedWall.getGlobalPosition().y -getMd().y > 0.5 * getMd().height+stackedWall.height){
+        if (stackedWall.getGlobalPosition().y-getMd().y > 0.5 * getMd().height
+            || getMd().y -stackedWall.getGlobalPosition().y > 0.5 * getMd().height+stackedWall.height){
             touchWallLeft = false;
             stackedWall = undefined;
+        }
+    }
+    if(supportedWall){
+        if(supportedWall.getGlobalPosition().x - getMd().x > 0.5 * getMd().width
+            || getMd().x - supportedWall.getGlobalPosition().x > 0.5 * getMd().width+supportedWall.width){
+            touchWallTop = false;
+            supportedWall = undefined;
         }
     }
 }

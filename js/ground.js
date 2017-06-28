@@ -98,9 +98,9 @@ function produceStone(groundContainer) {
     stone.anchor.set(0.5, 0.5);
     stone.width = md.width * 0.6;
     stone.height = md.height * 0.6;
-    md.diameter = true;
     stone.x = renderer.width + stone.width/2;
     stone.y = groundY - stone.height/2;
+    stone.diameter = true;
     groundContainer.addChild(stone);
 
     stoneArray.push(stone);
@@ -110,7 +110,7 @@ function produceStone(groundContainer) {
 function moveStones() {
     for (var i = 0; i < stoneArray.length; i++) {
         var stone = stoneArray[i];
-        if (bump.hitTestCircle(md, stone, true)) {
+        if (hit(md, stone, 0.9)) {
             gameOver("撞死啦～～")
         }
         if (stone.x < -stone.width) {
@@ -121,14 +121,16 @@ function moveStones() {
             stone.x -= velocity;
         }
     }
-
 }
 
 
 var jumpVDynamic;
-const g = suitWindowSize(-10 / 60 * 3), jumpThreshold = suitWindowSize(-30);
+const g = suitWindowSize(-10 / 60 * 3), jumpThreshold = suitWindowSize(-24);
 
 function jumpMd() {
+    if (touchWallTop){
+        jumpVDynamic = 0;
+    }
     if (jumping) {
         jumpVDynamic += g;
         md.y = md.y - jumpVDynamic;
