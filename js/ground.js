@@ -130,6 +130,10 @@ const g = suitWindowSize(-10 / 60 * 3), jumpThreshold = suitWindowSize(-24);
 function jumpMd() {
     if (touchWallTop){
         jumpVDynamic = 0;
+    } else if(touchWallBottom) {
+        jumpVDynamic = -jumpVDynamic;
+        touchWallBottom = false;
+        topWall = undefined;
     }
     if (jumping) {
         jumpVDynamic += g;

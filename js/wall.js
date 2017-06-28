@@ -17,20 +17,35 @@ function produceWall(skyContainer) {
     wall.x = renderer.width;
     wall.y = (renderer.height*0.65-wall.height) * (0.8*Math.random() + 0.2);
     wall.mass = Number.MAX_SAFE_INTEGER;
+    var fakeRate = Math.random();
+    if(fakeRate < 0.5){
+        wall.fake = true;
+    }
     skyContainer.addChild(wall);
     wallArray.push(wall);
 }
 
-var stackedWall, supportedWall;
+var stackedWall, supportedWall, topWall, fakeWall;
 function moveWall() {
     bump.hit(getMd(), wallArray, true, true, true, function (collision, platform) {
-        if (collision === 'right') {
-            touchWallLeft = true;
-            stackedWall = platform;
+        if(!fakeWall && platform.fake){
+            // crash the wall randomly
+            fakeWall = platform;
+            wallArray.remove(fakeWall);
+            fakeWallAnimation();
         }
-        if (collision === 'bottom') {
-            touchWallTop = true;
-            supportedWall = platform;
+
+        if(!platform.fake){
+            if (collision === 'bottom'){
+                touchWallTop = true;
+                supportedWall = platform;
+            }else if (collision === 'top'){
+                touchWallBottom = true;
+                topWall = platform;
+            }else if (collision === 'right') {
+                touchWallLeft = true;
+                stackedWall = platform;
+            }
         }
     });
 

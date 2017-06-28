@@ -79,6 +79,26 @@ function mdAnimation() {
     renderer.render(stage);
 }
 
+var blurCount=0;
+function fakeWallAnimation() {
+    wallAnimation = requestAnimationFrame(fakeWallAnimation);
+    var blurFilter = new PIXI.filters.BlurFilter();
+    fakeWall.filters = [blurFilter];
+
+    blurCount += 0.1;
+    var blurAmount = Math.sin(blurCount);
+    blurFilter.blur = 10 * (blurAmount);
+    if(blurAmount >=0.9){
+        fakeWall.destroy();
+        skyContainer.removeChild(fakeWall);
+        wallArray.remove(fakeWall);
+        renderer.render(skyContainer);
+        fakeWall = undefined;
+        blurCount = 0;
+        cancelAnimationFrame(wallAnimation);
+    }
+}
+
 function updateScore(){
     if (touchWallLeft){
         velocity = 0;
