@@ -56,12 +56,12 @@ function moveStars() {
         jumpV = jumpVAdd + startJumpV;
     }
     if (starBuffStartTime!==undefined && starsGot >= 3){
-        masterJumpTag = true;
+        phdJumpTag = true;
     }
 
     if (starBuffStartTime!==undefined && starBuffStartTime < new Date().getTime()-10*1000){
         starBuffStartTime = undefined;
-        masterJumpTag = false;
+        phdJumpTag = false;
         jumpV = startJumpV;
         starsGot = 0;
     }

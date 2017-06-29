@@ -21,7 +21,7 @@ var pause = false;
 
 const jumpVAdd = suitWindowSize(4);
 var starBuffStartTime = undefined;
-var masterJumpTag = false;
+var phdJumpTag = false;
 var starsGot = 0;
 var touchWallLeft = false, touchWallTop=false, touchWallBottom=false;
 

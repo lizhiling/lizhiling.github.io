@@ -84,7 +84,7 @@ function fakeWallAnimation() {
     wallAnimation = requestAnimationFrame(fakeWallAnimation);
     var blurFilter = new PIXI.filters.BlurFilter();
     fakeWall.filters = [blurFilter];
-
+    fakeWall.x -= velocity;
     blurCount += 0.1;
     var blurAmount = Math.sin(blurCount);
     blurFilter.blur = 10 * (blurAmount);

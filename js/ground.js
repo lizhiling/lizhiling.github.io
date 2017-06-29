@@ -50,7 +50,7 @@ function renderNewGround(groundContainer, groundY) {
     groundContainer.addChild(groundContainerA);
 
     document.getElementsByTagName('canvas')[0].onclick = function () {
-        if(md.y + md.height / 2 >= groundY || masterJumpTag){
+        if(md.y + md.height / 2 >= groundY || phdJumpTag|| supportedWall){
             jumpVDynamic = jumpV;
             jumping = true;
         }
@@ -128,10 +128,8 @@ var jumpVDynamic;
 const g = suitWindowSize(-10 / 60 * 3), jumpThreshold = suitWindowSize(-24);
 
 function jumpMd() {
-    if (touchWallTop){
-        jumpVDynamic = 0;
-    } else if(touchWallBottom) {
-        jumpVDynamic = -jumpVDynamic;
+    if(touchWallBottom) {
+        jumpVDynamic = -jumpVDynamic/4;
         touchWallBottom = false;
         topWall = undefined;
     }
@@ -143,7 +141,7 @@ function jumpMd() {
             if(jumpVDynamic < jumpThreshold){
                 gameOver("摔死啦～～～")
             }
-            jumpVDynamic = jumpV;
+            jumpVDynamic = 0;
             md.y = groundY - md.height / 2;
             jumping = false;
         }
@@ -159,7 +157,7 @@ function rollMd() {
 }
 
 W.press = function () {
-    if(md.y + md.height / 2 >= groundY || masterJumpTag){
+    if(md.y + md.height / 2 >= groundY || phdJumpTag || supportedWall){
         jumpVDynamic = jumpV;
         jumping = true;
     }

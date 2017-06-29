@@ -73,6 +73,10 @@ function moveWall() {
     if(supportedWall){
         if(supportedWall.getGlobalPosition().x - getMd().x > 0.5 * getMd().width
             || getMd().x - supportedWall.getGlobalPosition().x > 0.5 * getMd().width+supportedWall.width){
+            if(supportedWall.getGlobalPosition().y - getMd().y === 0.5 * getMd().height){
+                jumping = true;
+                jumpVDynamic = 0;
+            }
             touchWallTop = false;
             supportedWall = undefined;
         }
