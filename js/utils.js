@@ -66,10 +66,14 @@ Array.prototype.remove = function(val) {
 
 
 function allowRestart(text) {
-    showCenterMessage(text+ '(Press SPACE to restart!)');
+    showCenterMessage(text+ '(Press SPACE or CLICK to restart!)');
     SPACE.press = function () {
         window.location.reload(true);
         // start();
+    };
+
+    document.getElementsByTagName('canvas')[0].onclick = function () {
+        window.location.reload(true);
     };
 }
 
