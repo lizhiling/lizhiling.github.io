@@ -26,13 +26,16 @@ function calForWholeSaving(retireYear){
     let houseInstallment = document.getElementById("houseInstallment").value;
     let houseInstallmentUntilYear = document.getElementById("houseInstallmentUntilYear").value;
 
+    let currentSaving = document.getElementById("currentSaving").value;
 
     let amount = calSavingForHouse(houseInstallment, houseInstallmentUntilYear, retireYear)
         + calSavingForParents(forParentYears, numberOfParents, forParentPerMonth)
         + calSavingForLifeCost(lifeCostPerMonthAfterRetirement, cpfLifeYear, retireYear)
         + calSavingForCpfSaving(cpfLifeSaving);
     document.getElementById("totalSaving").innerHTML = to10Thousands(amount);
-    return amount;
+    let totalSavingExcludeExisting = amount  - currentSaving*10000;
+    document.getElementById("totalSavingExcludeExisting").innerHTML = to10Thousands(totalSavingExcludeExisting);
+    return totalSavingExcludeExisting;
 }
 
 function calForYearlySaving(wholeSavingNeeded, retireYear, currentYear) {

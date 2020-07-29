@@ -2,27 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>退休计算器</title>
+    <title>退休计划器</title>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="js/utils.js"></script>
     <script src="js/bootstrap.bundle.js"></script>
     <link rel="stylesheet" href="css/bootstrap.css">
 </head>
 <body>
-<div id="app" class="container">
+<div id="app" class="container border border-light">
+    <!-- As a heading -->
+    <nav class="navbar navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1">退休计划器</span>
+    </nav>
+    <br>
+
     <div class="row">
         <div class="col-md">
             <form>
                 <div class="form-group">
                     <label for="currentAge">年纪</label>
-                    <input type="number" class="form-control" id="currentAge" aria-describedby="currentAgeHelp" onkeyup="calMain()" value="30">
+                    <input type="number" class="form-control" id="currentAge" aria-describedby="currentAgeHelp" onkeyup="calMain()" onchange="calMain()" value="30">
                     <small id="currentAgeHelp" class="form-text text-muted">你现在的年纪.</small>
                 </div>
 
                 <div class="form-group">
                     <label for="retireAge">退休年龄</label>
-                    <input type="number" class="form-control" id="retireAge" aria-describedby="retireAgeHelp" onkeyup="calMain()" value="50">
+                    <input type="number" class="form-control" id="retireAge" aria-describedby="retireAgeHelp" onkeyup="calMain()" onchange="calMain()" value="50">
                     <small id="retireAgeHelp" class="form-text text-muted">目标的退休年龄.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="currentSaving">现在存款</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">$</span>
+                        </div>
+                        <input type="number" class="form-control" id="currentSaving" aria-describedby="currentSavingHelp" onkeyup="calMain()" onchange="calMain()" value="0">
+                        <div class="input-group-append">
+                            <span class="input-group-text">万</span>
+                        </div>
+                    </div>
+                        <small id="currentSavingHelp" class="form-text text-muted">现在已经有的存款.</small>
                 </div>
 
                 <div class="form-group">
@@ -31,7 +51,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">$</span>
                         </div>
-                        <input type="number" class="form-control" id="monthlyCost" aria-describedby="monthlyCostHelp" onkeyup="calMain()" value="2500">
+                        <input type="number" class="form-control" id="monthlyCost" aria-describedby="monthlyCostHelp" onkeyup="calMain()" onchange="calMain()" value="2500">
                     </div>
                    <small id="monthlyCostHelp" class="form-text text-muted">退休后到65岁前的每月生活费（除去房贷）. CPF Life在65岁后提供每月$2000.</small>
                 </div>
@@ -42,7 +62,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">$</span>
                     </div>
-                    <input type="number" class="form-control" id="parentCost" aria-describedby="parentCostHelp" onkeyup="calMain()" value="800">
+                    <input type="number" class="form-control" id="parentCost" aria-describedby="parentCostHelp" onkeyup="calMain()" onchange="calMain()" value="800">
                     </div><small id="parentCostHelp" class="form-text text-muted">父母每人每月的花费，默认需要供养25年.</small>
                 </div>
 
@@ -52,13 +72,13 @@
                         <div class="input-group-prepend">
                         <span class="input-group-text">$</span>
                     </div>
-                    <input type="number" class="form-control" id="houseInstallment" aria-describedby="houseInstallmentHelp" onkeyup="calMain()" value="2500">
+                    <input type="number" class="form-control" id="houseInstallment" aria-describedby="houseInstallmentHelp" onkeyup="calMain()" onchange="calMain()" value="2500">
                     </div><small id="houseInstallmentHelp" class="form-text text-muted">每月的房贷，如果退休后仍然需要支付房贷会是很大的开销哦.</small>
                 </div>
 
                 <div class="form-group">
                     <label for="houseInstallmentUntilYear">房贷结清年</label>
-                    <input type="number" class="form-control" id="houseInstallmentUntilYear" aria-describedby="houseInstallmentUntilYearHelp" onkeyup="calMain()" value="50">
+                    <input type="number" class="form-control" id="houseInstallmentUntilYear" aria-describedby="houseInstallmentUntilYearHelp" onkeyup="calMain()" onchange="calMain()" value="50">
                     <small id="houseInstallmentUntilYearHelp" class="form-text text-muted">房贷结束的年纪.</small>
                 </div>
             </form>
@@ -94,17 +114,21 @@
             </div><br>
             <div class="card border-info ">
                 <div class="card-header">
-                    总额
+                    总额（含CPF）
                 </div>
                 <div class="card-body">
                     <table class="table">
                         <tbody>
                         <tr>
-                            <th>总存款（含CPF）</th>
+                            <th>总存款</th>
                             <td><var id="totalSaving">-</var></td>
                         </tr>
                         <tr>
-                            <th>每年需存款（含CPF）</th>
+                            <th>需要存款</th>
+                            <td><var id="totalSavingExcludeExisting">-</var></td>
+                        </tr>
+                        <tr>
+                            <th>每年需存款</th>
                             <td><var id="yearlySaving">-</var></td>
                         </tr>
                         </tbody>
