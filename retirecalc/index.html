@@ -15,13 +15,13 @@
             <form>
                 <div class="form-group">
                     <label for="currentAge">年纪</label>
-                    <input type="number" class="form-control" id="currentAge" aria-describedby="currentAgeHelp" onkeydown="calMain()" value="30">
+                    <input type="number" class="form-control" id="currentAge" aria-describedby="currentAgeHelp" onkeyup="calMain()" value="30">
                     <small id="currentAgeHelp" class="form-text text-muted">你现在的年纪.</small>
                 </div>
 
                 <div class="form-group">
                     <label for="retireAge">退休年龄</label>
-                    <input type="number" class="form-control" id="retireAge" aria-describedby="retireAgeHelp" onkeydown="calMain()" value="50">
+                    <input type="number" class="form-control" id="retireAge" aria-describedby="retireAgeHelp" onkeyup="calMain()" value="50">
                     <small id="retireAgeHelp" class="form-text text-muted">目标的退休年龄.</small>
                 </div>
 
@@ -31,7 +31,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">$</span>
                         </div>
-                        <input type="number" class="form-control" id="monthlyCost" aria-describedby="monthlyCostHelp" onkeydown="calMain()" value="2500">
+                        <input type="number" class="form-control" id="monthlyCost" aria-describedby="monthlyCostHelp" onkeyup="calMain()" value="2500">
                     </div>
                    <small id="monthlyCostHelp" class="form-text text-muted">退休后到65岁前的每月生活费（除去房贷）. CPF Life在65岁后提供每月$2000.</small>
                 </div>
@@ -42,7 +42,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">$</span>
                     </div>
-                    <input type="number" class="form-control" id="parentCost" aria-describedby="parentCostHelp" onkeydown="calMain()" value="800">
+                    <input type="number" class="form-control" id="parentCost" aria-describedby="parentCostHelp" onkeyup="calMain()" value="800">
                     </div><small id="parentCostHelp" class="form-text text-muted">父母每人每月的花费，默认需要供养25年.</small>
                 </div>
 
@@ -52,13 +52,13 @@
                         <div class="input-group-prepend">
                         <span class="input-group-text">$</span>
                     </div>
-                    <input type="number" class="form-control" id="houseInstallment" aria-describedby="houseInstallmentHelp" onkeydown="calMain()" value="2500">
+                    <input type="number" class="form-control" id="houseInstallment" aria-describedby="houseInstallmentHelp" onkeyup="calMain()" value="2500">
                     </div><small id="houseInstallmentHelp" class="form-text text-muted">每月的房贷，如果退休后仍然需要支付房贷会是很大的开销哦.</small>
                 </div>
 
                 <div class="form-group">
                     <label for="houseInstallmentUntilYear">房贷结清年</label>
-                    <input type="number" class="form-control" id="houseInstallmentUntilYear" aria-describedby="houseInstallmentUntilYearHelp" onkeydown="calMain()" value="50">
+                    <input type="number" class="form-control" id="houseInstallmentUntilYear" aria-describedby="houseInstallmentUntilYearHelp" onkeyup="calMain()" value="50">
                     <small id="houseInstallmentUntilYearHelp" class="form-text text-muted">房贷结束的年纪.</small>
                 </div>
             </form>
